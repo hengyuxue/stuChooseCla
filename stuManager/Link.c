@@ -35,7 +35,7 @@ void getinffromFile(LinkNode *lstu)
 	int count;
 	int credit;
 	int i,j;
-	char str[50];
+	char str[150];
 	initstuInf(&stu);
 	printf("输入要读入的文件路径:\n");
 	scanf("%s",filepath);
@@ -62,9 +62,10 @@ void getinffromFile(LinkNode *lstu)
 		addstu(lstu,stu);
 	}
 	fclose(fp);
-	sprintf(str,"read student inf from File: %s\n",filepath);
-	system("date >> ../log.log");
-	system("echo $str >> ../log.log");			
+	sprintf(str,"echo 'add student inf from File: %s' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",filepath);
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");			
 }
 
 //从键盘读取数据
@@ -78,7 +79,7 @@ void getinffromkeyb(LinkNode *lstu)
     int course[5];
 	int count;
 	STUD stu;
-	char str[50];
+	char str[150];
 	initstuInf(&stu);
 	printf("请输入学生个数：\n");
 	scanf("%d",&n);
@@ -99,10 +100,10 @@ void getinffromkeyb(LinkNode *lstu)
 		addstuInf(&stu,snum,sname,course,count,scredit);
 		addstu(lstu,stu);	
 	}
-	sprintf(str,"read student inf from Screen: \n");
-	system("date >> ../log.log");
-	system("echo $str >> ../log.log");
-
+	sprintf(str,"echo 'add student inf from Screen: ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 }
 
 //向学生结构体（链表节点）中添加数据
@@ -156,7 +157,7 @@ void printstu(LinkNode *lstu)
 //根据姓名查找学生
 int findstu_name(LinkNode *lstu,char name[])
 {
-	char str[50];
+	char str[150];
 	if(lstu->next==NULL)
 	{
 	    printf("当前链表为空\n");
@@ -169,18 +170,20 @@ int findstu_name(LinkNode *lstu,char name[])
 		{
 			printf("找到了！\n");
 			printstuInf(lstu->stu);
-			sprintf(str," find student inf by name %s \n",name);
-	                system("date >> ../log.log");
-	       		system("echo $str >> ../log.log");
+			sprintf(str,"echo 'find student inf by name: %s ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",name);
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 			return 1;
 		}
 	}
 	if(lstu->next==NULL)
 	{
 		printf("没有这个学生\n");
-		sprintf(str," can't find student inf by name %s \n",name);
-	        system("date >> ../log.log");
-	      	system("echo $str >> ../log.log");
+		sprintf(str,"echo 'can't find student , %s doesn't exist! ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",name);
+		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+		system(str);
+		system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 	}
 	
 	return 0;
@@ -188,6 +191,7 @@ int findstu_name(LinkNode *lstu,char name[])
 //根据学号查找学生
 int findstu_sno(LinkNode *lstu,int sno)
 {
+		char str[150];
 	if(lstu->next==NULL)
 	{
 	    printf("当前链表为空\n");
@@ -200,18 +204,20 @@ int findstu_sno(LinkNode *lstu,int sno)
 		{
 			printf("找到了！\n");
 			printstuInf(lstu->stu);
-			sprintf(str," find student inf by stuNum %d \n",sno);
-	                system("date >> ../log.log");
-	       		system("echo $str >> ../log.log");
+			sprintf(str,"echo 'find student inf by stuNum: %d ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",sno);
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 			return 1;
 		}
 	}
 	if(lstu->next==NULL)
 	{
 		printf("没有这个学生\n");
-		sprintf(str," find student inf by stuNum %d \n",sno);
-	        system("date >> ../log.log");
-	       	system("echo $str >> ../log.log");
+		sprintf(str,"echo 'can't find student , %d doesn't exist! ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",sno);
+		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+		system(str);
+		system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 	
 	}
 	return 0;
@@ -226,7 +232,7 @@ void changestuInf(LinkNode *lstu,Clist *lcou)
 	int credit;
 	int i;
 	int flag=0;
-	char stu[50];
+	char str[150];
 	int a;//课程位置标志
 	printf("请输入你想修改的学生编号：\n");
 	scanf("%d",&sno);
@@ -270,9 +276,10 @@ void changestuInf(LinkNode *lstu,Clist *lcou)
 
 					}
 				}
-						sprintf(str," change student %s inf : add a course \n",lstu->stu.name);
-	        				system("date >> ../log.log");
-	       					system("echo $str >> ../log.log");
+						sprintf(str,"echo 'change student : add a course ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 				if(flag==0)
 				{
 					printf("课程链表没有要该课程\n");
@@ -327,9 +334,10 @@ void changestuInf(LinkNode *lstu,Clist *lcou)
 					lstu->stu.credit-=credit;
 					
 				}
-				sprintf(str," change student %s inf : delete a course \n",lstu->stu.name);
-	        		system("date >> ../log.log");
-	       			system("echo $str >> ../log.log");
+				sprintf(str,"echo 'change student : delete a course ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 				if(flag==0)
 				{
 					printf("课程链表中没有该课程\n");
@@ -354,7 +362,7 @@ int delstu(LinkNode *lstu,Clist *lcou)//删除成功返回1
 	int cno;
 	int count;
 	int i;
-	char str[50];
+	char str[150];
 	p=lstu;
 	q=lstu->next;
 	printf("输入要删除的学生学号：\n");
@@ -385,9 +393,10 @@ int delstu(LinkNode *lstu,Clist *lcou)//删除成功返回1
 			}
 			p->next=q->next;
 			printf("删除成功\n");
-			sprintf(str," delete student %s  \n",q->stu.name);
-	        	system("date >> ../log.log");
-	       		system("echo $str >> ../log.log");
+			sprintf(str,"echo 'delete student : %d ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",del_sno);
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 			return 1;
 		}
 		p=p->next;
@@ -414,9 +423,10 @@ int delstu(LinkNode *lstu,Clist *lcou)//删除成功返回1
 			}
 			p->next=NULL;	
 			printf("删除成功！\n");
-			sprintf(str," delete student %s  \n",q->stu.name);
-	        	system("date >> ../log.log");
-	       		system("echo $str >> ../log.log");
+			sprintf(str,"echo 'delete student : %d ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",del_sno);
+			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 			return 1;
 		}
 		else
@@ -435,7 +445,7 @@ void writeintoFile(LinkNode *lstu)
 	int i;
 	int count;
 	char filepath[20];
-	char str[50];
+	char str[150];
 	printf("输入学生信息要保存的文件路径:\n");
 	scanf("%s",filepath);
 	if((fp=fopen(filepath,"w"))==NULL) 
@@ -457,10 +467,10 @@ void writeintoFile(LinkNode *lstu)
 	}
 	fclose(fp);
 	printf("学生信息已保存在%s中!\n",filepath);
-	sprintf(str," save  all student info into file %s \n",filepath);
-	system("date >> ../log.log");
-   	system("echo $str >> ../log.log");
-
+	sprintf(str,"echo 'save  all student info into file %s ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",filepath);
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");	
 }
 void freeList(LinkNode *lstu)
 {
