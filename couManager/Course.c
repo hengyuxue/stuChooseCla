@@ -33,6 +33,7 @@ void getcoufromFile(Clist *lcou)
 	int credit;
 	int hadperson;
 	int maxsum;
+	char str[150];
 	initcouInf(&cou);
 	printf("输入要读入的文件路径:\n");
 	scanf("%s",filepath);
@@ -54,6 +55,10 @@ void getcoufromFile(Clist *lcou)
 		addcou(lcou,cou);
 	}
 	fclose(fp);
+	sprintf(str,"echo 'add course info from file %s ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",filepath);
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 }
 //从键盘读取数据
 void getcoufromkeyb(Clist *lcou)
@@ -67,6 +72,7 @@ void getcoufromkeyb(Clist *lcou)
     int credit;
 	int hadperson;
 	int maxsum;
+	char str[150];
 	COUR cou;
 	initcouInf(&cou);
 	printf("请输入课程个数：\n");
@@ -86,6 +92,10 @@ void getcoufromkeyb(Clist *lcou)
 		
 		addcou(lcou,cou);	
 	}
+	sprintf(str,"echo 'add course info from Screen ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 }
 //打印课程信息(指定课程)
 void printcouInf(COUR cou)
@@ -95,6 +105,7 @@ void printcouInf(COUR cou)
 //打印链表中所有课程信息
 void printcou(Clist *lcou)
 {
+	char str[150];
 	if(lcou->next==NULL)
 	{
 		printf("此链表为空\n");
@@ -105,10 +116,15 @@ void printcou(Clist *lcou)
 		lcou=lcou->next;
 		printf("%d %s %s %d %d %d %d\n",lcou->cou.cno,lcou->cou.cname,lcou->cou.cquality,lcou->cou.period,lcou->cou.credit,lcou->cou.hadperson,lcou->cou.maxsum);
 	}
+	sprintf(str,"echo 'print all course info ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+	system(str);
+	system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 }
 //按课程编号查找课程信息
 int findCou(Clist *lcou,int cno)
 {
+	char str[150];
 	if(lcou->next==NULL)
 	{
 	    printf("当前链表为空\n");
@@ -121,12 +137,20 @@ int findCou(Clist *lcou,int cno)
 		{
 			printf("找到了！\n");
 			printcouInf(lcou->cou);
+			sprintf(str,"echo 'find course info by courseNUm %d ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",cno);
+	         	system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+			system(str);
+			system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 			return 1;
 		}
 	}
 	if(lcou->next==NULL)
 	{
 		printf("没有这个学生\n");
+		sprintf(str,"echo 'can't find course  %d,doesn't exist! ' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",cno);
+	         system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+		system(str);
+		system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 	
 	}
 	return 0;
@@ -143,6 +167,7 @@ void changecouInf(Clist *lcou,LinkNode *lstu)
 	int maxsum;
 	int count;
 	int i;
+	char str[150];
 	printf("请选择要修改的课程\n");
 	scanf("%d",&cno);
 	while(lcou->next!=NULL)
@@ -162,6 +187,10 @@ void changecouInf(Clist *lcou,LinkNode *lstu)
 				scanf("%s",cquality);
 				strcpy(lcou->cou.cquality,cquality);
 				printf("修改成功\n");
+				sprintf(str,"echo 'modify course info : cquality' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	         		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+				system(str);
+				system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 			}
 			else if(choice==2)
 			{
@@ -169,6 +198,10 @@ void changecouInf(Clist *lcou,LinkNode *lstu)
 				scanf("%d",&period);
 				lcou->cou.period=period;
 				printf("修改成功\n");
+				sprintf(str,"echo 'modify course info : period' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	         		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+				system(str);
+				system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 			}
 			else if(choice==3)
 			{
@@ -187,6 +220,10 @@ void changecouInf(Clist *lcou,LinkNode *lstu)
 							lstu->stu.credit-=oldcredit;
 							lstu->stu.credit+=credit;
 							printf("修改成功\n");
+							sprintf(str,"echo 'modify course info : credit' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	         		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+				system(str);
+				system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 						}
 						
 					}
@@ -199,6 +236,10 @@ void changecouInf(Clist *lcou,LinkNode *lstu)
 				scanf("%d",&maxsum);
 				lcou->cou.maxsum=maxsum;
 				printf("修改成功\n");
+				sprintf(str,"echo 'modify course info : maxsum' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ");
+	         		system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+				system(str);
+				system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 			}
 
 		}
@@ -214,6 +255,7 @@ int delcou(Clist *lcou,LinkNode *lstu)
 	int a;
 	int flag=0;
 	int i;
+	char str[150];
 	p=lcou;
 	q=lcou->next;
 	printf("输入要删除的课程编号：\n");
@@ -252,6 +294,10 @@ int delcou(Clist *lcou,LinkNode *lstu)
 					lstu->stu.count-=1;
 					lstu->stu.credit-=credit;
 					printf("删除成功！\n");
+					sprintf(str,"echo 'delete course %d' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",del_cno);
+	         			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+					system(str);
+					system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
                 }
 			}
 			if(flag==0)
@@ -291,6 +337,10 @@ int delcou(Clist *lcou,LinkNode *lstu)
 					lstu->stu.count-=1;
 					lstu->stu.credit-=credit;
 					printf("删除成功！\n");
+					sprintf(str,"echo 'delete course %d' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",del_cno);
+	         			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+					system(str);
+					system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
                 }
 				if(flag==0)
 				{
@@ -317,6 +367,7 @@ void writebackFile(Clist *lcou)
 {
 	FILE *fp;
 	char filepath[20];
+	char str[150];
 	printf("输入课程信息要保存的文件路径:\n");
 	scanf("%s",filepath);
 	if((fp=fopen(filepath,"w"))==NULL) 
@@ -331,6 +382,10 @@ void writebackFile(Clist *lcou)
 	}
 	fclose(fp);
 	printf("课程信息已保存在%s中!\n",filepath);
+	sprintf(str,"echo 'save all course inf into %s' >> ~/myproject/stuChooseCla/stuChooseCla/log.log ",filepath);
+	         			system("date >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
+					system(str);
+					system("echo >> ~/myproject/stuChooseCla/stuChooseCla/log.log");
 }
 //释放
 void freeCList(Clist *lcou)
